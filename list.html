@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="th">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Namirez | Members</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&family=Teko:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" type="icon" href="images/default.png" />
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="NAMIREZ FAMILY | GANG">
+    <meta property="og:description" content="Official website of Namirez Family. Check our members and memories.">
+    <meta property="og:image" content="images/default.png">
+
+  </head>
+
+  <body>
+    <div id="page-loader">
+      <div class="loader-content">
+        <div class="boxes">
+          <div class="box"><div></div><div></div><div></div><div></div></div>
+          <div class="box"><div></div><div></div><div></div><div></div></div>
+          <div class="box"><div></div><div></div><div></div><div></div></div>
+          <div class="box"><div></div><div></div><div></div><div></div></div>
+        </div>
+        <p class="loading-text">LOADING SYSTEM...</p>
+      </div>
+    </div>
+
+    <div class="snow-container"></div>
+    <div class="deco-line left"></div>
+    <div class="deco-line right"></div>
+
+    <a href="index.html" class="home-btn"
+      ><i class="fa-solid fa-house"></i> HOME</a
+    >
+
+    <div class="container">
+      <div class="header">
+        <h1 style="color: #333">THE</h1>
+        <h1 style="margin-top: -20px">NAMIREZ</h1>
+        <p class="subtitle">FAMILY // GANG</p>
+      </div>
+
+      <div class="search-section">
+        <div class="form-control">
+            <input type="text" id="searchInput" required="" autocomplete="off">
+            <label>
+                <span style="transition-delay:0ms">S</span>
+                <span style="transition-delay:50ms">E</span>
+                <span style="transition-delay:100ms">A</span>
+                <span style="transition-delay:150ms">R</span>
+                <span style="transition-delay:200ms">C</span>
+                <span style="transition-delay:250ms">H</span>
+            </label>
+        </div>
+        <div class="stats-box">
+          <div class="stat-item">
+            <div id="matchCount" class="stat-val">0</div>
+            <div class="stat-label">ONLINE</div>
+          </div>
+          <div class="stat-item">
+            <div id="totalCount" class="stat-val">0</div>
+            <div class="stat-label">MEMBERS</div>
+          </div>
+        </div>
+      </div>
+
+      <div id="results" class="results-grid">
+        <div class="loading-wrapper">
+            <div class="spinner"></div>
+            <p style="font-family: 'Poppins'; color: #444; font-size: 0.8rem; letter-spacing: 2px;">
+              DECRYPTING DATABASE...
+            </p>
+        </div>
+      </div>
+
+      <footer class="footer-credit">
+        <div class="credit-content">
+          <p>DEVELOPED BY <span class="dev-name">NAMIREZ</span></p>
+          <p class="copyright">&copy; 2026 NAMIREZ FAMILY. ALL RIGHTS RESERVED.</p>
+        </div>
+      </footer>
+    </div>
+
+    <button id="backToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+      <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+    <script src="script.js"></script>
+  </body>
+</html>
