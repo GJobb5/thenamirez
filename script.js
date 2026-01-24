@@ -5,7 +5,7 @@ class NamirezSystem {
       apiGallery: "gallery.json",
       defaultImage: "images/default.png",
       debounceTime: 300,
-      loaderDelay: 800,
+      loaderDelay: 1000,
     };
 
     this.state = {
@@ -17,15 +17,13 @@ class NamirezSystem {
     this.dom = {
       loader: document.getElementById("page-loader"),
       body: document.body,
-
-      // Elements หน้ารายชื่อ
+      // List Page Elements
       searchInput: document.getElementById("searchInput"),
       resultDiv: document.getElementById("results"),
       matchCount: document.getElementById("matchCount"),
       totalCount: document.getElementById("totalCount"),
       backToTopBtn: document.getElementById("backToTop"),
-
-      // Elements หน้า Gallery
+      // Gallery Page Elements
       galleryGrid: document.getElementById("gallery-grid"),
       imageViewer: document.getElementById("image-viewer"),
       fullImage: document.getElementById("full-image"),
@@ -43,7 +41,7 @@ class NamirezSystem {
     );
 
     this.handleGlobalEvents();
-    this.initSnowEffect();
+    this.initParticleEffect();
 
     if (this.dom.resultDiv) {
       this.loadMembers();
@@ -58,7 +56,7 @@ class NamirezSystem {
 
   async loadMembers() {
     try {
-      await new Promise((resolve) => setTimeout(resolve, 600));
+      await new Promise((resolve) => setTimeout(resolve, 800));
       const response = await fetch(this.config.apiMembers);
       if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
       const data = await response.json();
@@ -80,7 +78,7 @@ class NamirezSystem {
     if (list.length === 0) {
       this.dom.resultDiv.innerHTML = `
         <div class="loading-wrapper">
-          <p style="color: #555; font-size: 1.5rem; letter-spacing: 3px;">NO TARGET FOUND</p>
+          <p style="color: var(--text-muted); font-size: 1.5rem; letter-spacing: 3px;">NO TARGET FOUND</p>
         </div>`;
       return;
     }
@@ -92,7 +90,7 @@ class NamirezSystem {
       const card = document.createElement("li");
       card.className = "card";
       card.style.opacity = "0";
-      card.style.animation = `fadeInMove 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards ${index * 0.05}s`;
+      card.style.animation = `fadeInMove 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards ${index * 0.05}s`;
 
       const imagePath = person.image || this.config.defaultImage;
       const rank = person.rank || "MEMBER";
@@ -145,7 +143,7 @@ class NamirezSystem {
 
   async loadGallery() {
     try {
-      await new Promise((resolve) => setTimeout(resolve, 600));
+      await new Promise((resolve) => setTimeout(resolve, 800));
       const response = await fetch(this.config.apiGallery);
       if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
       const data = await response.json();
@@ -168,7 +166,7 @@ class NamirezSystem {
       const div = document.createElement("div");
       div.className = "gallery-item";
       div.style.opacity = "0";
-      div.style.animation = `fadeInMove 0.5s forwards ${index * 0.1}s`;
+      div.style.animation = `fadeInMove 0.6s forwards ${index * 0.1}s`;
 
       const isVideo = !!item.video;
       
@@ -185,7 +183,7 @@ class NamirezSystem {
       let htmlContent = `<img src="${imageSrc}" alt="${item.caption}" loading="lazy">`;
       if (isVideo) {
         htmlContent += `<div class="play-icon"><i class="fa-solid fa-play"></i></div>`;
-        div.setAttribute("data-video", item.video); // ฝังลิงก์ไว้ที่ element
+        div.setAttribute("data-video", item.video);
       }
 
       htmlContent += `
@@ -249,6 +247,18 @@ class NamirezSystem {
   }
 
   handleGlobalEvents() {
+    // Mouse tracking for gradient effect
+    document.addEventListener("mousemove", (e) => {
+      const cards = document.querySelectorAll(".nav-card, .card");
+      for (const card of cards) {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        card.style.setProperty("--mouse-x", `${x}px`);
+        card.style.setProperty("--mouse-y", `${y}px`);
+      }
+    });
+
     window.addEventListener("scroll", () => {
       if (this.dom.backToTopBtn) {
         if (window.scrollY > 300) this.dom.backToTopBtn.classList.add("show");
@@ -277,30 +287,52 @@ class NamirezSystem {
     }
   }
 
-  initSnowEffect() {
-    if (document.querySelector(".snow-generated")) return;
-    let snowContainer = document.querySelector(".snow-container");
-    if (!snowContainer) {
-      snowContainer = document.createElement("div");
-      snowContainer.className = "snow-container snow-generated";
-      document.body.prepend(snowContainer);
-    } else {
-      snowContainer.classList.add("snow-generated");
-    }
+  initParticleEffect() {
+    const container = document.getElementById("particles-container");
+    if (!container) return;
 
-    const createSnowflake = () => {
-      const snowflake = document.createElement("div");
-      snowflake.classList.add("snowflake");
-      snowflake.innerText = "❄";
-      snowflake.style.left = Math.random() * 100 + "vw";
-      snowflake.style.fontSize = Math.random() * 10 + 10 + "px";
-      snowflake.style.opacity = Math.random() * 0.5 + 0.3;
-      const duration = Math.random() * 5 + 3;
-      snowflake.style.animationDuration = duration + "s";
-      this.dom.body.appendChild(snowflake);
-      setTimeout(() => { snowflake.remove(); }, duration * 1000);
-    };
-    setInterval(createSnowflake, 400);
+    const particleCount = 30;
+    
+    for (let i = 0; i < particleCount; i++) {
+      this.createParticle(container);
+    }
+  }
+
+  createParticle(container) {
+    const particle = document.createElement("div");
+    particle.className = "particle";
+    
+    const size = Math.random() * 3 + 1;
+    particle.style.width = `${size}px`;
+    particle.style.height = `${size}px`;
+    
+    particle.style.left = `${Math.random() * 100}vw`;
+    particle.style.top = `${Math.random() * 100}vh`;
+    
+    const duration = Math.random() * 20 + 10;
+    particle.style.transition = `all ${duration}s linear, opacity 2s ease`;
+    
+    container.appendChild(particle);
+
+    // Animate
+    setTimeout(() => {
+      particle.style.opacity = Math.random() * 0.3 + 0.1;
+      this.moveParticle(particle);
+    }, 100);
+  }
+
+  moveParticle(particle) {
+    const x = Math.random() * 100;
+    const y = Math.random() * 100;
+    
+    particle.style.left = `${x}vw`;
+    particle.style.top = `${y}vh`;
+    
+    const duration = Math.random() * 20 + 10;
+    
+    setTimeout(() => {
+      this.moveParticle(particle);
+    }, duration * 1000);
   }
 }
 
