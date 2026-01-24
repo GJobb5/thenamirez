@@ -1,67 +1,77 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Namirez | Home</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&family=Teko:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" type="icon" href="images/default.png" />
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Namirez | Official Portal</title>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&family=Teko:wght@300;400;500;600;700&display=swap"
-    rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <link rel="stylesheet" href="style.css" />
-  <link rel="icon" type="image/png" href="images/default.png" />
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="NAMIREZ FAMILY | GANG">
+    <meta property="og:description" content="Official website of Namirez Family. Check our members and memories.">
+    <meta property="og:image" content="images/default.png">
 
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="NAMIREZ FAMILY | OFFICIAL">
-  <meta property="og:description" content="Official portal of the Namirez Family. Access members list and gallery.">
-  <meta property="og:image" content="images/default.png">
-</head>
+  </head>
 
-<body>
-  <div id="page-loader">
-    <div class="loader-content">
-      <div class="spinner-box"></div>
-      <p class="loading-text">SYSTEM INITIALIZING...</p>
-    </div>
-  </div>
-
-  <div id="particles-container"></div>
-  <div class="deco-line left"></div>
-  <div class="deco-line right"></div>
-
-  <div class="container home-layout">
-    <div class="header">
-      <h1>NAMIREZ</h1>
-      <div class="subtitle">OFFICIAL DATABASE</div>
-    </div>
-
-    <div class="nav-grid">
-      <a href="list.html" class="nav-card">
-        <div class="nav-content">
-          <i class="fa-solid fa-users nav-icon"></i>
-          <h2>MEMBERS</h2>
-          <p>ACCESS PERSONNEL DATABASE</p>
+  <body>
+    <div id="page-loader">
+      <div class="loader-content">
+        <div class="boxes">
+          <div class="box"><div></div><div></div><div></div><div></div></div>
+          <div class="box"><div></div><div></div><div></div><div></div></div>
+          <div class="box"><div></div><div></div><div></div><div></div></div>
+          <div class="box"><div></div><div></div><div></div><div></div></div>
         </div>
-      </a>
-
-      <a href="gallery.html" class="nav-card">
-        <div class="nav-content">
-          <i class="fa-solid fa-images nav-icon"></i>
-          <h2>GALLERY</h2>
-          <p>VIEW ARCHIVED MEDIA</p>
-        </div>
-      </a>
-    </div>
-
-    <footer class="footer-credit">
-      <div class="credit-content">
-        <p class="copyright">&copy; 2026 NAMIREZ FAMILY. ALL RIGHTS RESERVED.</p>
+        <p class="loading-text">ACCESSING SYSTEM...</p>
       </div>
-    </footer>
-  </div>
+    </div>
 
-  <script src="script.js"></script>
-</body>
+    <div class="snow-container"></div>
+    <div class="deco-line left"></div>
+    <div class="deco-line right"></div>
 
+    <div class="container home-layout">
+      <div class="header">
+        <h1 style="color: #333">THE</h1>
+        <h1 style="margin-top: -20px">NAMIREZ</h1>
+        <p class="subtitle">SELECT DESTINATION</p>
+      </div>
+
+      <div class="nav-grid">
+        <a href="list.html" class="nav-card">
+          <div class="nav-content">
+            <i class="fa-solid fa-users nav-icon"></i>
+            <h2>MEMBERS</h2>
+            <p>VIEW ALL MEMBERS LIST</p>
+          </div>
+          <div class="nav-overlay"></div>
+        </a>
+
+        <a href="gallery.html" class="nav-card">
+            <div class="nav-content">
+                <i class="fa-solid fa-images nav-icon"></i> <h2>GALLERY</h2>
+                <p>GANG MOMENTS</p>
+            </div>
+            <div class="nav-overlay"></div>
+        </a>
+      </div>
+
+      <footer class="footer-credit">
+        <div class="credit-content">
+          <p class="copyright">&copy; 2026 NAMIREZ FAMILY.</p>
+        </div>
+      </footer>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
 </html>
